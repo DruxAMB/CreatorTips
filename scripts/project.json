@@ -1,0 +1,1 @@
+{"contract":"CreatorTips","file":"contracts/CreatorTips.sol","initSignature":"initialize(address,address)","initArgsEnv":["OWNER_ADDRESS","TREASURY_ADDRESS"]}
