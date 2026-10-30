@@ -301,13 +301,13 @@ export function WalletProvider({
 export function ConnectWalletButton() {
   const { status, address, balance, switchChain, openWalletModal, disconnect } = useWallet();
   const btn =
-    "rounded-lg px-4 py-2 text-sm font-medium focus-visible:outline-2 focus-visible:outline-primary";
+    "rounded-full px-5 py-2.5 text-sm font-semibold focus-visible:outline-2 focus-visible:outline-primary";
 
   if (status === "ready") {
     return (
       <button
         onClick={disconnect}
-        className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-3 py-1 text-xs font-mono text-foreground hover:border-secondary focus-visible:outline-2 focus-visible:outline-primary"
+        className="inline-flex items-center gap-2 rounded-full border border-border-strong bg-card px-4 py-2 text-xs font-mono text-foreground hover:border-secondary focus-visible:outline-2 focus-visible:outline-primary"
         title={`${address} · ${Number(formatEther(balance)).toFixed(4)} BOT · click to disconnect`}
       >
         <span aria-hidden className="h-1.5 w-1.5 rounded-full bg-success" />

@@ -1,34 +1,69 @@
 @import "tailwindcss";
 
 @theme {
-  --font-sans: var(--font-jbmono), ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-jbmono), ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-  --color-background: #000000;
-  --color-card: #111111;
-  --color-elevated: #191919;
-  --color-border: #202020;
-  --color-border-strong: #3a3a3a;
-  --color-rule: #505050;
-  --color-foreground: #eeeeee;
-  --color-secondary: #b4b4b4;
-  --color-muted-foreground: #7e7e7e;
-  --color-steel: #606060;
-  --color-primary: #e8b54a;
-  --color-primary-hover: #c99a30;
-  --color-primary-foreground: #000000;
-  --color-success: #5fae72;
-  --color-warning: #d19a3a;
-  --color-danger: #d1553b;
-  --radius-sm: 2px; --radius-md: 2px; --radius-lg: 2px; --radius-xl: 2px; --radius-2xl: 2px; --radius-3xl: 2px;
-  --color-surface: #000000;
+
+  /* Monzo surfaces — mint canvas under white paper cards */
+  --color-background: #f2f8f3;
+  --color-surface: #f2f8f3;
+  --color-card: #ffffff;
+  --color-elevated: #e3ebe4;
+  --color-border: #e3ebe4;
+  --color-border-strong: #b5b9bd;
+  --color-rule: #e3ebe4;
+
+  /* Ink neutrals */
+  --color-foreground: #091723;
+  --color-secondary: #3b4c54;
+  --color-muted-foreground: #6b747b;
+  --color-steel: #75817e;
+  --color-fog: #b5b9bd;
+
+  /* The single chromatic voice + achromatic CTA ink */
+  --color-coral: #ff4f40;
+  --color-primary: #091723;
+  --color-primary-hover: #112231;
+  --color-primary-foreground: #ffffff;
+  --color-navy: #112231;
+
+  --color-success: #1a7f4b;
+  --color-warning: #a85d00;
+  --color-danger: #cf3526;
+
+  /* Monzo shape language: 4px badges, 24px inputs, 32px containers, 64px cards */
+  --radius-sm: 4px;
+  --radius-md: 24px;
+  --radius-lg: 32px;
+  --radius-xl: 64px;
+  --radius-2xl: 64px;
+  --radius-3xl: 64px;
+
+  --shadow-float: 0 0 10px 0 rgba(0, 0, 0, 0.1);
 }
+
+html, body { overflow-x: clip; }
+
+/* MonzoSansText fingerprint: -0.05em on running text; display + mono exempt */
+body { letter-spacing: -0.05em; }
+code, .font-mono { letter-spacing: 0; }
+.font-display { font-family: var(--font-manrope), ui-sans-serif, system-ui, sans-serif; letter-spacing: 0; }
+
+/* The physical-card product: the one permitted coral fill */
+.tip-card {
+  background: linear-gradient(135deg, #ff6a56 0%, #ff4f40 55%, #e8432f 100%);
+  box-shadow: var(--shadow-float);
+}
+
 .manual-expand { display: grid; grid-template-rows: 0fr; opacity: 0; transition: grid-template-rows 0.32s cubic-bezier(0.4,0,0.2,1), opacity 0.24s ease; }
 .manual-expand[data-open] { grid-template-rows: 1fr; opacity: 1; }
 .manual-expand .manual-inner { overflow: hidden; min-height: 0; }
 .manual-expand .manual-body { transform: translateY(-6px); transition: transform 0.32s cubic-bezier(0.4,0,0.2,1); }
 .manual-expand[data-open] .manual-body { transform: none; }
 @media (prefers-reduced-motion: reduce) { .manual-expand, .manual-expand .manual-body { transition: none; } }
+
 * { scrollbar-width: thin; scrollbar-color: var(--color-border-strong) transparent; }
 ::-webkit-scrollbar { width: 10px; height: 10px; }
 ::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: var(--color-border-strong); border: 3px solid var(--color-background); border-radius: 2px; }
+::-webkit-scrollbar-thumb { background: var(--color-border-strong); border: 3px solid var(--color-background); border-radius: 8px; }
