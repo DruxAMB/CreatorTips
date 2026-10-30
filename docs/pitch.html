@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>CreatorTips — Project Pitch</title>
+<style>
+  * { margin: 0; box-sizing: border-box; }
+  body { font-family: "Inter", "Segoe UI", system-ui, sans-serif; color: #091723; background: #fff; letter-spacing: -0.02em; }
+  .page { width: 1100px; margin: 0 auto; padding: 64px 72px; }
+  .hero { background: #f2f8f3; border-radius: 64px; padding: 56px 56px 48px; position: relative; overflow: hidden; }
+  .eyebrow { font-size: 15px; font-weight: 700; color: #ff4f40; }
+  h1 { font-family: Manrope, "Segoe UI", sans-serif; font-size: 48px; font-weight: 800; letter-spacing: -0.01em; margin-top: 12px; line-height: 1.12; }
+  h1 .c { color: #ff4f40; }
+  .tag { margin-top: 14px; font-size: 18px; max-width: 620px; color: #3b4c54; line-height: 1.45; }
+  .links { margin-top: 22px; font-size: 13px; }
+  .links span { display: inline-block; background: #fff; border: 1px solid #e3ebe4; border-radius: 999px; padding: 5px 13px; margin-right: 8px; color: #3b4c54; }
+  .tipcard { position: absolute; right: 48px; top: 44px; width: 230px; transform: rotate(4deg);
+    background: linear-gradient(135deg, #ff6a56 0%, #ff4f40 55%, #e8432f 100%);
+    border-radius: 26px; padding: 20px 22px; color: #fff; box-shadow: 0 0 10px rgba(0,0,0,.1); }
+  .tipcard .brand { font-weight: 800; font-size: 14px; }
+  .tipcard .chip { width: 40px; height: 28px; border-radius: 8px; background: rgba(255,255,255,.25); margin: 22px 0; }
+  .tipcard .num { font-family: "JetBrains Mono", Consolas, monospace; font-size: 12.5px; opacity: .95; }
+  .tipcard .row { display: flex; justify-content: space-between; align-items: flex-end; margin-top: 16px; font-size: 11px; }
+  .tipcard .big { font-weight: 800; font-size: 17px; }
+  h2 { font-family: Manrope, sans-serif; font-size: 22px; font-weight: 800; margin: 44px 0 12px; letter-spacing: -0.01em; }
+  p, li { font-size: 14.5px; line-height: 1.55; color: #3b4c54; }
+  .cols { display: flex; gap: 28px; }
+  .col { flex: 1; }
+  ul { padding-left: 18px; }
+  li { margin-bottom: 6px; }
+  .card { background: #f2f8f3; border-radius: 32px; padding: 22px 24px; margin-top: 14px; }
+  .card b { font-weight: 700; color: #091723; }
+  table { border-collapse: collapse; width: 100%; margin-top: 10px; font-size: 13.5px; }
+  th { text-align: left; font-weight: 700; color: #75817e; padding: 8px 10px; border-bottom: 1px solid #e3ebe4; }
+  td { padding: 8px 10px; border-bottom: 1px solid #eef3ef; vertical-align: top; }
+  .mono { font-family: "JetBrains Mono", Consolas, monospace; font-size: 12.5px; letter-spacing: 0; }
+  .flow { display: flex; align-items: center; gap: 10px; margin-top: 14px; font-size: 13px; }
+  .flow .box { background: #091723; color: #fff; border-radius: 20px; padding: 12px 16px; }
+  .flow .arr { color: #75817e; }
+  .addr { background: #e3ebe4; border-radius: 8px; padding: 2px 7px; }
+  .coral { color: #ff4f40; font-weight: 700; }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="hero">
+    <div class="tipcard">
+      <div class="brand">CreatorTips <span style="float:right;font-weight:400;font-size:10px;opacity:.8">BOT</span></div>
+      <div class="chip"></div>
+      <div class="num">@handle → wallet</div>
+      <div class="row"><span>95% to creators</span><span class="big">0.05 BOT</span></div>
+    </div>
+    <div class="eyebrow">BOT Chain · chainId 677 · live on mainnet</div>
+    <h1>Tip a creator,<br><span class="c">skip the address.</span></h1>
+    <p class="tag">Supporters send BOT to a handle — a Telegram or X username —
+      instead of a raw address. Every tip splits 95% creator / 5% treasury,
+      enforced by the contract, not the app.</p>
+    <div class="links">
+      <span>github.com/DruxAMB/CreatorTips</span>
+      <span>scan.botchain.ai · 0x7805…265f</span>
+    </div>
+  </div>
+
+  <h2>The problem</h2>
+  <p>Tipping a creator on-chain means asking for a 42-character address — then
+     hoping there's no typo. A claimed human handle resolves to the wallet
+     <i>on-chain</i>: supporters type <span class="mono">@name</span> and the
+     contract handles the rest.</p>
+
+  <h2>What CreatorTips is</h2>
+  <div class="cols">
+    <div class="col">
+      <div class="card"><b>Claimable handles.</b> One lowercase handle per wallet
+        (2–32 chars, <span class="mono">a-z0-9._-</span>), enforced on-chain —
+        first come, first served.</div>
+      <div class="card"><b>Hard-coded split.</b> Every <span class="mono">tipHandle</span>
+        payment divides 95% creator / 5% treasury in contract code — no backend
+        could skim it.</div>
+    </div>
+    <div class="col">
+      <div class="card"><b>Public resolution.</b> Anyone can check
+        <span class="mono">resolveHandle</span> before sending — the mapping is
+        transparent and composable.</div>
+      <div class="card"><b>Permanently addressed.</b> UUPS + ERC1967 proxy: the
+        implementation can be upgraded while the address integrators reference
+        never changes.</div>
+    </div>
+  </div>
+
+  <h2>Architecture</h2>
+  <div class="flow">
+    <span class="box">Supporter<br><span class="mono">@handle + BOT</span></span><span class="arr">→</span>
+    <span class="box">dApp (Next.js + ethers)</span><span class="arr">→</span>
+    <span class="box">ERC1967 Proxy<br><span class="mono">0x7805af581EE18e449bd0d4F5b99b9DC1b8a0265f</span></span><span class="arr">→</span>
+    <span class="box">95% creator / 5% treasury</span>
+  </div>
+  <p style="margin-top:10px">Writes (<span class="mono">setHandle</span>,
+    <span class="mono">tipHandle</span> payable, min 0.001 BOT,
+    reentrancy-guarded) are signed transactions; reads
+    (<span class="mono">resolveHandle</span>, <span class="mono">handleOf</span>,
+    <span class="mono">totalTipped</span>) are free calls.</p>
+
+  <h2>Status &amp; traction</h2>
+  <table>
+    <tr><th>Item</th><th>State</th></tr>
+    <tr><td>Contract</td><td>Deployed on BOT Chain mainnet — proxy <span class="mono addr">0x7805…265f</span>, verified on scan.botchain.ai</td></tr>
+    <tr><td>Code</td><td>Open source — github.com/DruxAMB/CreatorTips (MIT)</td></tr>
+    <tr><td>Stage</td><td>Mainnet live; handle registry open for first creators</td></tr>
+  </table>
+
+  <h2>Why it fits BOT Chain</h2>
+  <ul>
+    <li><b>Payments UX primitive</b> — handle-based payouts are infrastructure the
+        whole AI/agent ecosystem can reuse (tip an agent's owner, pay a service).</li>
+    <li><b>Real transaction surface</b> — every claim and tip is a user-paid
+        mainnet transaction moving real BOT.</li>
+    <li><b>Sustainable protocol fee</b> — the 5% treasury split is recurring,
+        honest protocol revenue from actual utility.</li>
+    <li><b>Composable</b> — other contracts can resolve handles on-chain; AgentID
+        and badge/tipping flows can share the namespace.</li>
+  </ul>
+
+  <h2>Roadmap</h2>
+  <ul>
+    <li>Per-creator tip pages (shareable <span class="mono">/@handle</span> links with pre-filled forms).</li>
+    <li>Handle release/transfer via owner-signed messages.</li>
+    <li>Event indexer for a full-history leaderboard beyond the 30-event feed.</li>
+    <li>AgentID integration — tip a registered agent by its on-chain identity.</li>
+  </ul>
+
+  <p style="margin-top:40px;font-size:12px;color:#75817e">CreatorTips · BOT Chain Ecosystem Support Program application · 2026</p>
+</div>
+</body>
+</html>
