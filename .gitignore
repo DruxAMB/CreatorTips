@@ -1,5 +1,7 @@
 node_modules/
 artifacts/
+cache/
+broadcast/
 .env*
 !.env.example
 app/.next/
