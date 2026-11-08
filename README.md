@@ -4,7 +4,7 @@ Send BOT to a **handle** — a Telegram or X-style username — instead of a raw
 wallet address. Every tip splits **95% creator / 5% treasury**, enforced
 on-chain. Live on BOT Chain mainnet (chain 677).
 
-**Live app:** https://creatortips.druxamb.dev/ ·
+**Live app:** https://botchain-creatortips.netlify.app/ ·
 **Contract (proxy):** [`0x7805af581EE18e449bd0d4F5b99b9DC1b8a0265f`](https://scan.botchain.ai/address/0x7805af581EE18e449bd0d4F5b99b9DC1b8a0265f) · UUPS-upgradeable (ERC1967)
 
 ![CreatorTips](docs/hero.png)
